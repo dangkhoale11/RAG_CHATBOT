@@ -1,0 +1,16 @@
+langchain
+torch
+transformers
+accelerate
+huggingface_hub
+langchain_community
+sentence_transformers==2.2.2
+dotenv
+pinecone-client
+beautifulsoup4
+requests
+lxml
+jinja2
+python-multipart
+langchain-huggingface
+-e .
