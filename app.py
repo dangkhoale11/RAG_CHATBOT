@@ -6,9 +6,14 @@ from langchain.prompts import PromptTemplate
 from langchain_community.llms import CTransformers
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.memory import ConversationBufferWindowMemory
+from langchain_community.llms import LlamaCpp
 from dotenv import load_dotenv
 from src.prompt import *
 import os
+import torch 
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(device)
 
 app = Flask(__name__)
 
@@ -34,12 +39,18 @@ chain_type_kwargs={"prompt": PROMPT}
 
 
 model_id = 'models/vinallama-7b-chat_q5_0.gguf'
-llm = CTransformers(
-    model=model_id,
-    model_type="llama",  # hoặc "mistral", "phi2", v.v.
-    max_new_tokens=128,
-    temperature=0.01,
-    gpu_layers=40  # Đặt số lớp chạy trên GPU
+llm = LlamaCpp(
+    model_path=model_id,
+    n_gpu_layers=-1,  # Use -1 to offload all layers to GPU automatically
+    n_ctx=2048,       # Context window
+    temperature=0.3,   # Temperature for randomness
+    max_tokens=128,    # Maximum tokens to generate
+    verbose=True,      # Enable verbose logging
+    n_batch=512,       # Batch size for prompt processing (GPU optimization)
+    n_threads=8,       # Number of threads for CPU processing
+    use_mmap=True,     # Use memory mapping for faster loading
+    use_mlock=True,    # Lock model in memory to prevent swapping
+    seed=-1,           # Random seed (-1 for random)
 )
 
 

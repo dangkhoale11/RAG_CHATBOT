@@ -13,7 +13,6 @@ BASE_URL = "https://vienthammydiva.vn/"
 
 def hash_text(text: str) -> str:
     """Tạo hash SHA-256 từ một đoạn văn."""
-    import hashlib
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 def get_article_links(page_url):

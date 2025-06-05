@@ -1,3 +1,4 @@
+README.md
 setup.py
 DIVA_Chatbot.egg-info/PKG-INFO
 DIVA_Chatbot.egg-info/SOURCES.txt
