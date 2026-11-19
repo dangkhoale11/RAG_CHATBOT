@@ -1,6 +1,7 @@
 ### Retrival Chatbot for Diva beauty institute
 This is a retrieval-based chatbot designed to assist users by answering questions about the Diva Beauty Institute. The chatbot utilizes document retrieval techniques to provide accurate and context-aware responses based on available institute documents.
 ---
+# View more detail in CHATBOT_DIVA.pdf
 # To implement and run
 - Install dependencies
 ```bash
